@@ -12,25 +12,34 @@ int main(){
         cin>>b[i];
     }
     int i=0,j=0;
-    while(i<n&&j<m){
-        if(a[i]<b[j]){
-            cout<<a[i]<<" ";
-            i++;
+    vector<int> result;
+        while(i<n&&j<m){
+            if(a[i]<b[j]){
+                if(result.empty() || result.back() != a[i])
+                    result.push_back(a[i]);
+                i++;
+            }
+            else if(b[j]<a[i]){
+                if(result.empty() || result.back() != b[j])
+                    result.push_back(b[j]);
+                j++;
+            }
+            else{
+                if(result.empty() || result.back() != a[i])
+                    result.push_back(a[i]);
+                i++;
+                j++;
+            }
         }
-        else if(a[i]>b[j]){
-            cout<<b[j]<<" ";
-            j++;
+        while(i<n){
+            if(result.empty() || result.back() != a[i])
+                    result.push_back(a[i]);
+                    i++;
         }
-        else{
-            cout<<a[i]<<" ";
-            i++;
-            j++;
+        while(j<m){
+            if(result.empty() || result.back() != b[j])
+                result.push_back(b[j]);
+                j++;
         }
-    }
-   while(i<n){
-    cout<<a[i++]<<" ";
-   }
-   while(j<m){
-    cout<< b[j++]<<" ";
-   }
+        cout<< result[i]<<" ";
 }
