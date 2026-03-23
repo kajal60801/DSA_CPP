@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int k;
+    cin >> k;
+
+    int sum = 0;
+    int count = 0;
+
+    unordered_map<int,int> mp;
+
+    for(int i = 0; i < n; i++) {
+
+        sum += arr[i];
+
+        if(sum == k) {
+            count++;
+        }
+
+        if(mp.find(sum - k) != mp.end()) {
+            count += mp[sum - k];
+        }
+
+        mp[sum]++;
+    }
+
+    cout << count;
+
+    return 0;
+}
